@@ -8,6 +8,7 @@
   <div v-for="(product,i) in products" :key="i">
     <h4 :style="스타일"> {{ product.name }}</h4>
     <p>{{ product.price }} 만원</p>
+    <button @click="() => increase(i)">허위매물신고</button> <span>신고수 : {{product.count}}</span>
   </div>
 </template>
 
@@ -17,14 +18,20 @@ export default {
   name: 'App',
   data(){
     return {
+      count : 0,
       menuNames : ['Home','Shop','About'],
       prices : [60, 70, 80],
       스타일 : 'color : blue',
       products : [
-        {name : '역삼동원룸', price : 60},
-        {name : '천호동원룸', price : 70},
-        {name : '마포동원룸', price : 80},
+        {name : '역삼동원룸', price : 60, count : 0},
+        {name : '천호동원룸', price : 70, count : 1},
+        {name : '마포동원룸', price : 80, count : 2},
       ],
+    }
+  },
+  methods : {
+    increase(i){
+      this.products[i].count += 1;
     }
   },
   components: {
