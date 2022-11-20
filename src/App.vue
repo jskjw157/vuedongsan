@@ -12,12 +12,11 @@
     <a v-for="(menuName,i) in menuNames" :key="i"> {{menuName}} </a>
   </div>
 
-  <img alt="Vue logo" src="./assets/logo.png">
-  <div v-for="(product,i) in products" :key="i">
-    <img :src='product.img' class="room-img">
-    <h4 :style="스타일" @click="modalStatus = true"> {{ product.name }}</h4>
-    <p>{{ product.price }} 만원</p>
-    <button @click="() => increase(i)">허위매물신고</button> <span>신고수 : {{product.count}}</span>
+  <div v-for="(oneroom,i) in onerooms" :key="i">
+    <img :src='oneroom.image' class="room-img">
+    <h4 :style="스타일" @click="modalStatus = true"> {{ oneroom.title }}</h4>
+    <p>{{ oneroom.price }} 만원</p>
+    <p>{{ oneroom.content }} 만원</p>
   </div>
 </template>
 
@@ -25,10 +24,14 @@
 // 동적인 ui 만드는법:
 //1. ui의 현재상태를 데이터로 저장해둠
 //2. 데이터에 따라 ui가 어떻게보일지 작성
+
+import oneroomData from './assets/oneroom.js';
+
 export default {
   name: 'App',
   data(){
     return {
+      onerooms: oneroomData,
       modalStatus: false,
       count : 0,
       menuNames : ['Home','Shop','About'],
